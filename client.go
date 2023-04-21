@@ -13,7 +13,6 @@ import (
 	"github.com/bmc-toolbox/bmclib/v2/internal/httpclient"
 	"github.com/bmc-toolbox/bmclib/v2/internal/redfishwrapper"
 	"github.com/bmc-toolbox/bmclib/v2/providers/asrockrack"
-	"github.com/bmc-toolbox/bmclib/v2/providers/intelamt"
 	"github.com/bmc-toolbox/bmclib/v2/providers/ipmitool"
 	"github.com/bmc-toolbox/bmclib/v2/providers/redfish"
 	"github.com/bmc-toolbox/common"
@@ -125,9 +124,9 @@ func (c *Client) registerProviders() {
 	driverGoFish := redfish.New(c.Auth.Host, c.Auth.Port, c.Auth.User, c.Auth.Pass, c.Logger, redfishwrapper.WithHTTPClient(c.httpClient), redfishwrapper.WithVersionsNotCompatible(c.redfishVersionsNotCompatible))
 	c.Registry.Register(redfish.ProviderName, redfish.ProviderProtocol, redfish.Features, nil, driverGoFish)
 
-	// register AMT provider
-	driverAMT := intelamt.New(c.Logger, c.Auth.Host, c.Auth.Port, c.Auth.User, c.Auth.Pass)
-	c.Registry.Register(intelamt.ProviderName, intelamt.ProviderProtocol, intelamt.Features, nil, driverAMT)
+	// // register AMT provider
+	// driverAMT := intelamt.New(c.Logger, c.Auth.Host, c.Auth.Port, c.Auth.User, c.Auth.Pass)
+	// c.Registry.Register(intelamt.ProviderName, intelamt.ProviderProtocol, intelamt.Features, nil, driverAMT)
 
 	// register dell idrac9 provider
 	// driverIdrac9 := idrac9.NewConn(c.Auth.Host, c.Auth.Port, c.Auth.User, c.Auth.Pass, c.Logger, idrac9.WithHTTPClientConnOption(c.httpClient))
